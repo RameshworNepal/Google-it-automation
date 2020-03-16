@@ -1,0 +1,450 @@
+email address change from old domain to new:
+---------------------------------------------
+def replace_domain(email, old_domain, new_domain):
+    if "@" + old_domain in email:
+	 index = email.index("@" + old_domain)
+	 new_email = emain[:index] + "@" + new_domain
+	 return new_email
+    return email
+
+
+
+
+.upper()
+.lower()
+.strip()  -> remove white space, tab, newline
+.rstripe()
+.lstripe()
+.isnumeric()
+" ".join("", "", ... )
+.split()
+
+
+def to_celsius(x):
+    return (x-32)*5/9
+
+for x in range(0, 101, 10):
+    print("{:>3} F | {:>6.2f} C".format(x, to_celsius(x)))
+
+
+
+The is_palindrome function checks if a string is a palindrome. A palindrome is a string that can be equally read from left to right or right to left, omitting blank spaces, and ignoring capitalization. Examples of palindromes are words like kayak and radar, and phrases like "Never Odd or Even". Fill in the blanks in this function to return True if the passed string is a palindrome, False if not.
+
+
+def is_palindrome(input_string):
+	# We'll create two strings, to compare them
+	new_string = ""
+	reverse_string = ""
+	# Traverse through each letter of the input string
+	for letter in input_string.strip():
+		# Add any non-blank letters to the 
+		# end of one string, and to the front
+		# of the other string. 
+		if input_string:
+			new_string = new_string + letter.replace(" ", "")
+			reverse_string = letter.replace(" ", "") + reverse_string
+	# Compare the strings
+	if new_string.lower() == reverse_string.lower():
+		return True
+	return False
+
+print(is_palindrome("Never Odd or Even")) # Should be True
+print(is_palindrome("abc")) # Should be False
+print(is_palindrome("kayak")) # Should be True
+
+
+
+
+
+Using the format method, fill in the gaps in the convert_distance function so that it returns the phrase "X miles equals Y km", with Y having only 1 decimal place. For example, convert_distance(12) should return "12 miles equals 19.2 km".
+
+def convert_distance(miles):
+	km = miles * 1.6 
+	result = "{} miles equals {:0.1f} km".format(miles, km)
+	return result
+
+print(convert_distance(12)) # Should be: 12 miles equals 19.2 km
+print(convert_distance(5.5)) # Should be: 5.5 miles equals 8.8 km
+print(convert_distance(11)) # Should be: 11 miles equals 17.6 km
+
+
+
+
+.append("")
+.insert(0, "")
+.remove("")
+.pop(2)
+abc[]=...
+
+tuples:
+---------
+def convert_seconds(seconds):
+    hours = seconds // 3600
+    minutes = (seconds - hours * 3600) // 60
+    rem_seconds = seconds - hours * 3600 - minutes * 60
+    return hours, minutes, rem_seconds
+
+results = convert_seconds(5000)
+type(result)
+
+hours, minutes, seconds = result
+print(hours, minutes, seconds)
+
+
+-----------
+animals = ["", "", "", ""]
+chars = 0
+for animal in animals:
+   chars += len(animal)
+
+print("Total characters: {}, Average lenght: {}".format(chars, chars/len(animals)))
+
+
+---------
+
+winners = ["", "", "" ...]
+for index, person in enumerate(winners):
+    print("{} - {}".format(index+1, person))
+-------------
+
+def full_emails(people):
+    result = []
+    for email, name in people:
+       result.append("{} <{}>".format(name, email))
+    return result
+
+print(full_emails([("alex@example.com", "Alex Diego")]), ..)
+
+
+------------------
+
+multiples = []
+for x in range(1, 11):
+    multiples.append(x*7)
+
+print(multiples)
+
+or,
+
+multiples = [x*7 for x in range(1, 11)]
+print(multiples)
+
+--------------
+
+
+[ x for x in range(1,101) if x % 10 == 0 ] 
+
+
+
+
+
+vowels = ("A", "a", "E", "e", "I", "i", "O", "o", "U", "u")
+
+def pig_latin(text):
+  say = ""
+  # Separate the text into words
+  words = text.split(" ")
+  for word in words:
+    # Create the pig latin word and add it to the list
+    first_letter = word[0]
+    if first_letter in vowels:
+      return word + "way" 
+    # Turn the list back into a phrase
+    else:
+      return word[1:] + first_letter + "ay"
+print(pig_latin("hello how are you")) # Should be "ellohay owhay reaay ouyay"
+print(pig_latin("programming in python is fun")) # Should be "rogrammingpay niay ythonpay siay unfay"
+
+
+
+
+
+vowels = ("A", "a", "E", "e", "I", "i", "O", "o", "U", "u")
+
+def pig_latin(text):
+  say = ""
+  lines = []
+  # Separate the text into words
+  words = text.split(" ")
+  for word in words:
+    # Create the pig latin word and add it to the list
+    first_letter = word[0]
+    if first_letter in vowels:
+      say += word + "way "
+    else:
+      say += word[1:] + first_letter + "ay "
+    # Turn the list back into a phrase
+    lines.append(say)
+  return say
+		
+print(pig_latin("hello how are you")) # Should be "ellohay owhay reaay ouyay"
+print(pig_latin("programming in python is fun")) # Should be "rogrammingpay niay ythonpay siay unfay"
+
+-----------------------------------------------------
+
+
+Given a list of filenames, we want to rename all the files with the extension hpp to the extension h by generating a list of tuples of the form (old_name, new_name).
+
+That is, given the following list of filenames
+
+filenames = ["program.c", "stdio.hpp", "sample.hpp", "a.out", "math.hpp", "hpp.out"]
+
+complete the starter code to generate the following newfilenames list of tuples
+
+newfilenames = [('program.c', 'program.c'), ('stdio.hpp', 'stdio.h'), ('sample.hpp', 'sample.h'), ('a.out', 'a.out'), ('math.hpp', 'math.h'), ('hpp.out', 'hpp.out')]
+
+
+
+filenames = ["program.c", "stdio.hpp", "sample.hpp", "a.out", "math.hpp", "hpp.out"]
+newfilenames = []
+for x in range(len(filenames)):
+  old_name = filenames[x]
+  new_name = old_name.replace('.hpp','.h')
+  newfilenames.append((old_name, new_name))
+print (newfilenames) # Should be [('program.c', 'program.c'), ('stdio.hpp', 'stdio.h'), ('sample.hpp', 'sample.h'), ('a.out', 'a.out'), ('math.hpp', 'math.h'), ('hpp.out', 'hpp.out')]
+
+
+---------------------
+
+
+The permissions of a file in a Linux system are split into three sets of three permissions: read, write, and execute for the owner, group, and others. Each of the three values can be expressed as an octal number summing each permission, with 4 corresponding to read, 2 to write, and 1 to execute. Or it can be written with a string using the letters r, w, and x or - when the permission is not granted. For example: 640 is read/write for the owner, read for the group, and no permissions for the others; converted to a string, it would be: "rw-r-----" 755 is read/write/execute for the owner, and read/execute for group and others; converted to a string, it would be: "rwxr-xr-x" Fill in the blanks to make the code convert a permission in octal format into a string format.
+
+
+def octal_to_string(octal):
+  result = ""
+  value_letters = [(4,"r"),(2,"w"),(1,"x")]
+  # Iterate over each of the digits in octal
+  for digit in [int(n) for n in str(octal)]:
+    # Check for each of the permissions values
+    for value, letter in value_letters:
+      if digit >= value:
+        result += letter
+        digit -= value
+      else:
+        result += '-'
+  return result
+    
+print(octal_to_string(755)) # Should be rwxr-xr-x
+print(octal_to_string(644)) # Should be rw-r--r--
+print(octal_to_string(750)) # Should be rwxr-x---
+print(octal_to_string(600)) # Should be rw-------
+
+
+--------------------------
+
+
+Let's create a function that turns text into pig latin: a simple text transformation that modifies each word moving the first character to the end and appending "ay" to the end. For example, python ends up as ythonpay.
+
+vowels = ("A", "a", "E", "e", "I", "i", "O", "o", "U", "u")
+
+
+def pig_latin(text):
+  say = ""
+  lines = []
+  # Separate the text into words
+  words = text.split(" ")
+  for word in words:
+    # Create the pig latin word and add it to the list
+    first_letter = word[0]
+    if first_letter in vowels:
+      say += word + "way "
+    else:
+      say += word[1:] + first_letter + "ay "
+    # Turn the list back into a phrase
+    lines.append(say)
+  return say
+		
+print(pig_latin("hello how are you")) # Should be "ellohay owhay reaay ouyay"
+print(pig_latin("programming in python is fun")) # Should be "rogrammingpay niay ythonpay siay unfay"
+
+
+correct:
+
+vowels = ("A", "a", "E", "e", "I", "i", "O", "o", "U", "u")
+
+
+def pig_latin(text):
+  say = ""
+  lines = []
+  # Separate the text into words
+  words = text.split(" ")
+  for word in words:
+    # Create the pig latin word and add it to the list
+    first_letter = word[0]
+    #if first_letter in vowels:
+    #  say += word + "ay "
+    #else:
+    say += word[1:] + first_letter + "ay "
+    # Turn the list back into a phrase
+    lines.append(say)
+  return say
+		
+print(pig_latin("hello how are you")) # Should be "ellohay owhay reaay ouyay"
+print(pig_latin("programming in python is fun")) # Should be "rogrammingpay niay ythonpay siay unfay"
+------------------
+
+
+def count_letters(text):
+   result = {}
+   for letter in text:
+       if letter not in result:
+           result[letter] = 0
+       result[letter] += 1
+   retutn result
+
+
+
+---------------------------------------------
+
+The email_list function receives a dictionary, which contains domain names as keys, and a list of users as values. Fill in the blanks to generate a list that contains complete email addresses (e.g. diana.prince@gmail.com).
+
+
+def email_list(domains):
+	emails = []
+	for domain,users in domains.items():
+	  for user in users:
+	    emails.append(user + "@" +domain)
+	return(emails)
+
+print(email_list({"gmail.com": ["clark.kent", "diana.prince", "peter.parker"], "yahoo.com": ["barbara.gordon", "jean.grey"], "hotmail.com": ["bruce.wayne"]}))
+
+
+-------------------------------
+
+The groups_per_user function receives a dictionary, which contains group names with the list of users. Users can belong to multiple groups. Fill in the blanks to return a dictionary with the users as keys and a list of their groups as values.
+
+
+def groups_per_user(group_dictionary):
+	user_groups = {}
+	# Go through group_dictionary
+	for group,users in group_dictionary.items():
+		# Now go through the users in the group
+		for user in users:
+			# Now add the group to the the list of
+			user_groups.setdefault(user, []).append(group)
+      # groups for this user, creating the entry
+      # in the dictionary if necessary
+
+	return(user_groups)
+
+print(groups_per_user({"local": ["admin", "userA"],
+		"public":  ["admin", "userB"],
+		"administrator": ["admin"] }))
+
+
+-------------------------------
+
+Defining New Classes (Optional):
+--------------------------------
+class Apple:
+    color = ""
+    flavor = ""
+
+jonagold = Apple()
+jonagold.color = "red"
+jonagold.flavor = "sweet"
+
+print(jonagold.color)
+print(jonagold.flavor)
+print(jonagold.color.upper)
+
+golden = Apple()
+golden.color = "Yellow"
+golden.flavor = "Soft"
+
+--------------------------------
+
+# “If you have an apple and I have an apple and we exchange these apples, then
+# you and I will still each have one apple. But if you have an idea and I have
+# an idea and we exchange these ideas, then each of us will have two ideas.”
+# George Bernard Shaw
+
+class Person:
+    apples = 0
+    ideas = 0
+
+johanna = Person()
+johanna.apples = 1
+johanna.ideas = 1
+
+martin = Person()
+martin.apples = 2
+martin.ideas = 1
+
+def exchange_apples(you, me):
+  #"you" and "me" will exchange ALL our apples with one another
+  temp = you.apples
+  you.apples = me.apples
+  me.apples = temp
+  return you.apples, me.apples
+    
+def exchange_ideas(you, me):
+  #"you" and "me" will share our ideas with one another
+  temp = you.ideas
+  you.ideas += me.ideas
+  me.ideas += temp
+  return you.ideas, me.ideas
+
+exchange_apples(johanna, martin)
+print("Johanna has {} apples and Martin has {} apples".format(johanna.apples, martin.apples))
+exchange_ideas(johanna, martin)
+print("Johanna has {} ideas and Martin has {} ideas".format(johanna.ideas, martin.ideas))
+
+
+--------------------------------
+
+import datetime
+now = datetime.datetime.now()
+type(now)
+print(now)
+
+now.year
+print(now + datetime.timedelata(days=28))
+
+--------------------------------
+
+Date 
+User
+Machine
+Type
+
+
+names.sort()
+sorted(names, key=len)
+
+--------------------------------
+
+def get_event_date(event):
+   return rvent.date
+
+
+def current_users(events):
+   events.sort(key=get_event_date)
+   machines = {}
+   for event.machine not in machines:
+       machines[event.machine] = set()
+   if event.type = "login":
+       machine[event.machine].add(event.user)
+   elif event.type = "logout":
+       machines[event.machine].remove(event.user)
+   return machines
+
+def generate_report(machines):
+   for machine, users in machines.items():
+      if len(users) > 0:
+         user_list = ", ".join(users)
+         print("{}: {}". format(machine, user_list))
+
+
+
+users = current_users(events)
+print(users)
+
+generate_report(users)
+
+
+
+
+
+
+
